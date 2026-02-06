@@ -39,8 +39,8 @@ I regularly contribute to institutional workflows, develop reproducible tools, a
 ### 📈 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default" alt="Fatih Tuzen's GitHub Stats" height="150"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default" alt="Top Languages" height="150"/>
+  <img src="assets/github-stats.svg" alt="Fatih Tuzen's GitHub Stats" height="150"/>
+  <img src="assets/top-langs.svg" alt="Top Languages" height="150"/>
 </p>
 
 ---
