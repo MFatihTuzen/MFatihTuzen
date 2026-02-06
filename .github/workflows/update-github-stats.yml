@@ -2,8 +2,8 @@ name: Update GitHub Stats Cards
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # Her gün 03:00 UTC
-  workflow_dispatch: {}   # Manuel çalıştırma
+    - cron: "0 3 * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -11,7 +11,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,9 +28,9 @@ jobs:
             local url="$1"
             local out="$2"
             curl -L --retry 5 --retry-all-errors --retry-delay 3 \
-                 --connect-timeout 15 --max-time 60 \
-                 -H "User-Agent: github-actions" \
-                 -sS "$url" -o "$out"
+              --connect-timeout 15 --max-time 60 \
+              -H "User-Agent: github-actions" \
+              -sS "$url" -o "$out"
           }
 
           ok=1
@@ -48,30 +47,21 @@ jobs:
           else
             echo "Fetch failed (503 / rate limit). Keeping existing SVGs."
 
+            # If first run and files don't exist, create simple placeholders
             if [ ! -f assets/github-stats.svg ]; then
-              cat > assets/github-stats.svg <<'SVG'
-<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195">
-  <rect width="100%" height="100%" fill="#111"/>
-  <text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">GitHub Stats</text>
-  <text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text>
-</svg>
-SVG
+              printf '%s\n' '<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195"><rect width="100%%" height="100%%" fill="#111"/><text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">GitHub Stats</text><text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text></svg>' > assets/github-stats.svg
             fi
 
             if [ ! -f assets/top-langs.svg ]; then
-              cat > assets/top-langs.svg <<'SVG'
-<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195">
-  <rect width="100%" height="100%" fill="#111"/>
-  <text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">Top Languages</text>
-  <text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text>
-</svg>
-SVG
+              printf '%s\n' '<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195"><rect width="100%%" height="100%%" fill="#111"/><text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">Top Languages</text><text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text></svg>' > assets/top-langs.svg
             fi
           fi
 
       - name: Commit & push if changed
+        shell: bash
         run: |
-          if git status --porcelain | grep -q assets/; then
+          set -euo pipefail
+          if git status --porcelain | grep -q "assets/"; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add assets/
