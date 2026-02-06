@@ -1,0 +1,46 @@
+name: Update GitHub Stats Cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # daily at 03:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure assets directory
+        run: mkdir -p assets
+
+      - name: Download GitHub Stats SVGs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          STATS_URL="https://github-readme-stats.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default&hide_border=true"
+          LANGS_URL="https://github-readme-stats.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default&hide_border=true"
+
+          curl -fsSL "$STATS_URL" -o /tmp/github-stats.svg
+          curl -fsSL "$LANGS_URL" -o /tmp/top-langs.svg
+
+          mv /tmp/github-stats.svg assets/github-stats.svg
+          mv /tmp/top-langs.svg assets/top-langs.svg
+
+      - name: Commit & push if changed
+        run: |
+          set -euo pipefail
+          if git status --porcelain | grep -qE "assets/(github-stats|top-langs)\\.svg"; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/github-stats.svg assets/top-langs.svg
+            git commit -m "chore: update GitHub stats cards"
+            git push
+          else
+            echo "No changes to commit."
+          fi
