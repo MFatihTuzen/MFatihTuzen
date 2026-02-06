@@ -39,8 +39,8 @@ I regularly contribute to institutional workflows, develop reproducible tools, a
 ### 📈 GitHub Stats
 
 <p align="center">
-  <img src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/github-stats.svg" height="150" alt="GitHub Stats"/>
-  <img src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/top-langs.svg" height="150" alt="Top Languages"/>
+  <img src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/github-stats.svg?v=1" ...>
+  <img src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/top-langs.svg?v=1" ...>
 </p>
 
 
