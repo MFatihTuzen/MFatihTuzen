@@ -21,9 +21,10 @@ jobs:
           set -euo pipefail
           mkdir -p assets
 
-          STATS_URL="https://github-readme-stats.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default&hide_border=true&cache_seconds=86400"
-          LANGS_URL="https://github-readme-stats.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default&hide_border=true&cache_seconds=86400"
+        STATS_URL="https://github-readme-stats-dc2dafleo-fatihs-projects-e2b0b9a3.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default&hide_border=true&cache_seconds=86400"
+        LANGS_URL="https://github-readme-stats-dc2dafleo-fatihs-projects-e2b0b9a3.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default&hide_border=true&cache_seconds=86400"
 
+      
           fetch() {
             local url="$1"
             local out="$2"
