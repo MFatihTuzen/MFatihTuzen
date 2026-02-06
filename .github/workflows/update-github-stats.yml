@@ -1,3 +1,21 @@
+name: Update GitHub Stats Cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # Her gün 03:00 UTC
+  workflow_dispatch: {}   # Manuel çalıştırma
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download GitHub Stats SVGs (robust)
         shell: bash
         run: |
@@ -28,7 +46,7 @@
             mv "$tmp_langs" assets/top-langs.svg
             echo "SVGs updated."
           else
-            echo "Fetch failed (503/rate-limit). Keeping existing SVGs."
+            echo "Fetch failed (503 / rate limit). Keeping existing SVGs."
 
             if [ ! -f assets/github-stats.svg ]; then
               cat > assets/github-stats.svg <<'SVG'
@@ -49,4 +67,16 @@ SVG
 </svg>
 SVG
             fi
+          fi
+
+      - name: Commit & push if changed
+        run: |
+          if git status --porcelain | grep -q assets/; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/
+            git commit -m "chore: update GitHub stats cards"
+            git push
+          else
+            echo "No changes to commit."
           fi
