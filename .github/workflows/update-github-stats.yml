@@ -1,46 +1,52 @@
-name: Update GitHub Stats Cards
-
-on:
-  schedule:
-    - cron: "0 3 * * *"  # daily at 03:00 UTC
-  workflow_dispatch: {}
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Ensure assets directory
-        run: mkdir -p assets
-
-      - name: Download GitHub Stats SVGs
+      - name: Download GitHub Stats SVGs (robust)
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p assets
 
-          STATS_URL="https://github-readme-stats.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default&hide_border=true"
-          LANGS_URL="https://github-readme-stats.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default&hide_border=true"
+          STATS_URL="https://github-readme-stats.vercel.app/api?username=MFatihTuzen&show_icons=true&theme=default&hide_border=true&cache_seconds=86400"
+          LANGS_URL="https://github-readme-stats.vercel.app/api/top-langs/?username=MFatihTuzen&layout=compact&theme=default&hide_border=true&cache_seconds=86400"
 
-          curl -fsSL "$STATS_URL" -o /tmp/github-stats.svg
-          curl -fsSL "$LANGS_URL" -o /tmp/top-langs.svg
+          fetch() {
+            local url="$1"
+            local out="$2"
+            curl -L --retry 5 --retry-all-errors --retry-delay 3 \
+                 --connect-timeout 15 --max-time 60 \
+                 -H "User-Agent: github-actions" \
+                 -sS "$url" -o "$out"
+          }
 
-          mv /tmp/github-stats.svg assets/github-stats.svg
-          mv /tmp/top-langs.svg assets/top-langs.svg
+          ok=1
+          tmp_stats="$(mktemp)"
+          tmp_langs="$(mktemp)"
 
-      - name: Commit & push if changed
-        run: |
-          set -euo pipefail
-          if git status --porcelain | grep -qE "assets/(github-stats|top-langs)\\.svg"; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add assets/github-stats.svg assets/top-langs.svg
-            git commit -m "chore: update GitHub stats cards"
-            git push
+          if ! fetch "$STATS_URL" "$tmp_stats"; then ok=0; fi
+          if ! fetch "$LANGS_URL" "$tmp_langs"; then ok=0; fi
+
+          if [ "$ok" -eq 1 ] && grep -q "<svg" "$tmp_stats" && grep -q "<svg" "$tmp_langs"; then
+            mv "$tmp_stats" assets/github-stats.svg
+            mv "$tmp_langs" assets/top-langs.svg
+            echo "SVGs updated."
           else
-            echo "No changes to commit."
+            echo "Fetch failed (503/rate-limit). Keeping existing SVGs."
+
+            if [ ! -f assets/github-stats.svg ]; then
+              cat > assets/github-stats.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195">
+  <rect width="100%" height="100%" fill="#111"/>
+  <text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">GitHub Stats</text>
+  <text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text>
+</svg>
+SVG
+            fi
+
+            if [ ! -f assets/top-langs.svg ]; then
+              cat > assets/top-langs.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195">
+  <rect width="100%" height="100%" fill="#111"/>
+  <text x="20" y="60" fill="#fff" font-size="18" font-family="Arial">Top Languages</text>
+  <text x="20" y="95" fill="#bbb" font-size="14" font-family="Arial">Temporarily unavailable</text>
+</svg>
+SVG
+            fi
           fi
