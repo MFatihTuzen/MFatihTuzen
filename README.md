@@ -2,7 +2,7 @@
 
 <p align="center">
   <strong>Statistician | R Programmer | Time Series Analyst | Official Statistics Enthusiast</strong><br>
-  <a href="https://mfatihtuzen.netlify.app/">🌐 Blog</a> • 
+  <a href="https://mfatihtuzen.github.io/">🌐 Blog</a> • 
   <a href="https://rprogramlama.netlify.app/">📘 R Programming Book</a> • 
   <a href="https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/">💼 LinkedIn</a>
 </p>
@@ -31,7 +31,7 @@ I regularly contribute to institutional workflows, develop reproducible tools, a
 - 📘 [**R Programming Book (in Turkish)**](https://rprogramlama.netlify.app/)  
   A structured online book for learning R, covering tidyverse, ggplot2, and more.
 
-- ✍️ [**My Personal Blog**](https://mfatihtuzen.netlify.app/)  
+- ✍️ [**My Personal Blog**](https://mfatihtuzen.github.io/)  
   Insights on statistical modeling, reproducible research, and R applications in official statistics.
 
 ---
@@ -57,7 +57,7 @@ I regularly contribute to institutional workflows, develop reproducible tools, a
 ### 🌍 Connect With Me
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/)
-- 🌐 [Blog](https://mfatihtuzen.netlify.app/)
+- 🌐 [Blog](https://mfatihtuzen.github.io/)
 - 📘 [R Programming Book](https://rprogramlama.netlify.app/)
 - ✉️ [Email](mailto:mfatihtuzen@gmail.com)
 
