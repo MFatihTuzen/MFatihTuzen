@@ -1,72 +1,52 @@
-<h1 align="center">Hi there, I'm Dr. M. Fatih Tüzen 👋</h1>
+<h1 align="center">Dr. M. Fatih Tüzen 👋</h1>
 
 <p align="center">
-  <strong>Statistician | R Programmer | Time Series Analyst | Official Statistics Enthusiast</strong><br>
-  <a href="https://mfatihtuzen.github.io/">🌐 Blog</a> • 
-  <a href="https://rprogramlama.netlify.app/">📘 R Programming Book</a> • 
-  <a href="https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/">💼 LinkedIn</a>
+  <strong>Statistician · R Developer · Time Series & Official Statistics</strong>
+</p>
+
+<p align="center">
+  <a href="https://mfatihtuzen.github.io/">Website & Blog</a> ·
+  <a href="https://mfatihtuzen.github.io/r-programlama/">R Programming Book</a> ·
+  <a href="https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/">LinkedIn</a> ·
+  <a href="https://orcid.org/0000-0003-2779-2151">ORCID</a>
 </p>
 
 ---
 
-### 👨‍💼 About Me
+### About Me
 
-I’m a Statistician at the **Turkish Statistical Institute (TURKSTAT)** with nearly 20 years of experience in the production of official statistics.  
-I specialize in **seasonal adjustment**, **time series analysis**, **data collection methods**, and **statistical automation using R**.  
-I regularly contribute to institutional workflows, develop reproducible tools, and deliver internal and external trainings on statistics and R programming.
+I'm a statistician and R developer at the **Turkish Statistical Institute (TURKSTAT)**, specializing in **time series analysis, seasonal adjustment, and statistical methodology**.
 
----
+My work focuses on developing reproducible statistical workflows, automating analytical processes, and building R-based tools for official statistics.
 
-### 🔧 What I'm Currently Working On
+I also contribute to open-source software and educational resources that make statistical methods and data more accessible.
 
-- Automating seasonal adjustment workflows with **R & Shiny**
-- Forecasting short-term indicators using **nowcasting** methods
-- Creating reproducible **R-based training materials**
-- Enhancing **official statistics with tidyverse practices**
+### Selected Projects
 
----
+- **[tuiksdmx](https://github.com/MFatihTuzen/tuiksdmx)** · [CRAN](https://cran.r-project.org/package=tuiksdmx) · [Documentation](https://mfatihtuzen.github.io/tuiksdmx/)  
+  An authenticated, metadata-driven R client for the Turkish Statistical Institute's SDMX REST API.
 
-### 📚 Selected Projects
+- **[R Programming Book (in Turkish)](https://mfatihtuzen.github.io/r-programlama/)** · [Source](https://github.com/MFatihTuzen/r-programlama)  
+  An open-source Quarto book on R programming and data analysis.
 
-- 📘 [**R Programming Book (in Turkish)**](https://rprogramlama.netlify.app/)  
-  A structured online book for learning R, covering tidyverse, ggplot2, and more.
-
-- ✍️ [**My Personal Blog**](https://mfatihtuzen.github.io/)  
-  Insights on statistical modeling, reproducible research, and R applications in official statistics.
-
----
-
-### 📈 GitHub Stats
+### GitHub Activity
 
 <p align="center">
   <img
     src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/github-stats.svg?v=1"
-    alt="Fatih Tuzen's GitHub Stats"
+    alt="GitHub contribution statistics"
     height="150"
   />
   <img
     src="https://github.com/MFatihTuzen/MFatihTuzen/raw/main/assets/top-langs.svg?v=1"
-    alt="Top Languages"
+    alt="Most-used programming languages"
     height="150"
   />
 </p>
 
+### Connect
 
----
-
-### 🌍 Connect With Me
-
-- 🔗 [LinkedIn](https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/)
-- 🌐 [Blog](https://mfatihtuzen.github.io/)
-- 📘 [R Programming Book](https://rprogramlama.netlify.app/)
-- ✉️ [Email](mailto:mfatihtuzen@gmail.com)
-
----
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=MFatihTuzen&label=Profile+views&color=blue" alt="Profile views" />
-</p>
-
----
-
-> "_Official statistics deserve official-level reproducibility._"
+[Website & Blog](https://mfatihtuzen.github.io/) ·
+[LinkedIn](https://www.linkedin.com/in/dr-m-fatih-t-2b2a4328/) ·
+[ORCID](https://orcid.org/0000-0003-2779-2151) ·
+[Email](mailto:mfatihtuzen@gmail.com)
